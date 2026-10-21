@@ -2,7 +2,7 @@
 
 ## Problem
 
-Third-year AI and Data Science students often understand Machine Learning concepts better when explained in Tamil, but scikit-learn's source code and documentation are primarily in English. Students may copy code without fully understanding functions such as `fit()`, `transform()`, and `Pipeline`. This makes it difficult for them to understand how ML algorithms work internally and avoid common implementation mistakes. KaruviML bridges this language gap by allowing students to ask questions in Tamil, Tanglish, or English and receive clear explanations grounded in the original source code with citations.
+Students often understand Machine Learning concepts better when explained in Tamil, but scikit-learn's source code and documentation are primarily in English. Students may copy code without fully understanding functions such as `fit()`, `transform()`, and `Pipeline`. This makes it difficult for them to understand how ML algorithms work internally and avoid common implementation mistakes. KaruviML bridges this language gap by allowing students to ask questions in Tamil, Tanglish, or English and receive clear explanations grounded in the original source code with citations.
 
 ## Who it is for
 
