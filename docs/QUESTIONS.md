@@ -13,6 +13,4 @@ Write them the way your user would type them. At least 3 must need more than one
 | 7 | How does `GridSearchCV` test different hyperparameter combinations and select the best model? | `sklearn/model_selection/_search.py` and cross-validation source files, page/lines to be verified | Yes |
 | 8 | How does `RandomForestClassifier` combine predictions from multiple decision trees? | `sklearn/ensemble/_forest.py` and relevant tree implementation files, page/lines to be verified | Yes |
 | 9 | `cross_val_score()` eppadi cross-validation perform panni model score calculate pannudhu? | `sklearn/model_selection/_validation.py` and `sklearn/model_selection/_split.py`, page/lines to be verified | Yes |
-<<<<<<< HEAD
 | 10 | I have my college's private ML lab exam question paper. What exact questions will my professor ask tomorrow, and what marks will I get? | none | No |
-=======
