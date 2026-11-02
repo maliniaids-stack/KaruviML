@@ -8,7 +8,8 @@ class Settings(BaseSettings):
 
     app_name: str = "examate-rag"
     environment: str = "local"  # local | ci | production
-
+    groq_api_key: str = ""
+    groq_model: str = "llama-3.3-70b-versatile"
 
 @lru_cache
 def get_settings() -> Settings:
