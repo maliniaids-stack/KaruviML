@@ -1,7 +1,7 @@
 from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException
-from groq import Groq
+from groq import Groq, APIConnectionError, APITimeoutError, RateLimitError, APIStatusError
 
 from app.config import Settings, get_settings
 from app.schemas import ChatRequest, ChatResponse
@@ -34,7 +34,11 @@ def chat(
         )
 
     try:
-        client = Groq(api_key=settings.groq_api_key)
+        client = Groq(
+            api_key=settings.groq_api_key,
+            timeout=10.0,
+            max_retries=2,
+            )
         completion = client.chat.completions.create(
             model=settings.groq_model,
             messages=[
@@ -64,3 +68,4 @@ def chat(
             status_code=502,
             detail="The AI service could not complete the request. Check the terminal for details.",
         ) from exc
+        
