@@ -42,6 +42,10 @@ uvicorn app.main:app --reload
 curl http://localhost:8000/health
 ```
 
-## Live link
+## Live Demo
 
-To be added in Week 2, after deployment.
+- **Live API:** https://karuviml.onrender.com
+- **Health Check:** https://karuviml.onrender.com/health
+- **Interactive API Docs:** https://karuviml.onrender.com/docs
+
+The API is deployed on Render. The free service may take a little time to respond after a period of inactivity.
