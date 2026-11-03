@@ -1,7 +1,8 @@
+from datetime import UTC, datetime
 from typing import Annotated
-from datetime import datetime, timezone
+
 from fastapi import Depends, FastAPI, HTTPException
-from groq import Groq, APIConnectionError, APITimeoutError, RateLimitError, APIStatusError
+from groq import Groq
 
 from app.config import Settings, get_settings
 from app.schemas import ChatRequest, ChatResponse
@@ -66,7 +67,7 @@ def chat(
         answer = completion.choices[0].message.content or ""
         usage_log.append(
             {
-                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "timestamp": datetime.now(UTC).isoformat(),
                 "model": settings.groq_model,
                 "prompt_tokens": completion.usage.prompt_tokens if completion.usage else 0,
                 "completion_tokens": completion.usage.completion_tokens if completion.usage else 0,
