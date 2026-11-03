@@ -6,3 +6,4 @@ httpx2
 groq
 python-dotenv
 pypdf>=6.21.4
+sentence-transformers
