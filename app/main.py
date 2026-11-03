@@ -1,5 +1,5 @@
 from typing import Annotated
-
+from datetime import datetime, timezone
 from fastapi import Depends, FastAPI, HTTPException
 from groq import Groq, APIConnectionError, APITimeoutError, RateLimitError, APIStatusError
 
@@ -9,7 +9,7 @@ from app.schemas import ChatRequest, ChatResponse
 app = FastAPI(title="Examate RAG starter", version="0.1.0")
 
 SettingsDep = Annotated[Settings, Depends(get_settings)]
-
+usage_log: list[dict] = []
 
 @app.get("/health")
 def health(settings: SettingsDep) -> dict:
@@ -20,7 +20,16 @@ def health(settings: SettingsDep) -> dict:
         "environment": settings.environment,
     }
 
-
+@app.get("/usage")
+def get_usage() -> dict:
+    """Return usage records collected since the app started."""
+    return {
+        "request_count": len(usage_log),
+        "total_prompt_tokens": sum(item["prompt_tokens"] for item in usage_log),
+        "total_completion_tokens": sum(item["completion_tokens"] for item in usage_log),
+        "total_tokens": sum(item["total_tokens"] for item in usage_log),
+        "requests": usage_log,
+    }
 @app.post("/chat", response_model=ChatResponse)
 def chat(
     request: ChatRequest,
@@ -55,7 +64,15 @@ def chat(
         )
 
         answer = completion.choices[0].message.content or ""
-
+        usage_log.append(
+            {
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "model": settings.groq_model,
+                "prompt_tokens": completion.usage.prompt_tokens if completion.usage else 0,
+                "completion_tokens": completion.usage.completion_tokens if completion.usage else 0,
+                "total_tokens": completion.usage.total_tokens if completion.usage else 0,
+            }
+        )
         return ChatResponse(
             answer=answer,
             language=request.language,
