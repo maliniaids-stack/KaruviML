@@ -7,3 +7,6 @@ groq
 python-dotenv
 pypdf>=6.21.4
 sentence-transformers
+psycopg[binary]>=3.2
+SQLAlchemy>=2.0
+pgvector>=0.4

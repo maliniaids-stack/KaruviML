@@ -49,3 +49,35 @@ curl http://localhost:8000/health
 - **Interactive API Docs:** https://karuviml.onrender.com/docs
 
 The API is deployed on Render. The free service may take a little time to respond after a period of inactivity.
+
+### PostgreSQL with pgvector
+
+KaruviML uses PostgreSQL with the pgvector extension
+to store and retrieve document embeddings.
+
+The database runs in Docker using the
+`pgvector/pgvector:pg16` image.
+
+The database is configured with:
+- Database: `karuviml`
+- User: `karuvi`
+- Port: `5432`
+- Vector extension: `vector`
+
+The database connection and vector extension
+have been verified successfully.
+
+## Database Setup
+
+KaruviML uses PostgreSQL 16 with the pgvector
+extension for storing and searching document embeddings.
+
+- Docker image: `pgvector/pgvector:pg16`
+- Database: `karuviml`
+- Port: `5432`
+- Vector extension: Enabled
+
+### Test Results
+
+All 6 tests passed successfully.
+
